@@ -9,6 +9,7 @@
 
 
 ## Demo (todo)
+- with this workdow:
 ```yml
 name: download-tauri-app-from-run-id
 
@@ -77,6 +78,7 @@ jobs:
         run: |
           ls -R bucket
           cat bucket/yors.wall.json
+          cat bucket/yors.main.json
 
       - name: push tauri apps to some repo's release page (todo)
         shell: bash
@@ -89,6 +91,46 @@ jobs:
           echo "todo"
 
 
+```
+- here will output bucket files: bucket/yors.main.json,bucket/yors.wall.json
+
+- the bucket like (yors.wall.json):
+```json
+{
+  "version": "0.1.0",
+  "notes": "",
+  "pub_date": "2024-07-01T13:10:15.076Z",
+  "platforms": {
+    "win64": {
+      "signature": "the content of a sig\n",
+      "url": "https://github.com/YMC-GitHub/yowa/releases/download/v0.1.0/wall_0.1.0_x64_en-US.msi.zip"
+    },
+    "linux": {
+      "signature": "",
+      "url": ""
+    },
+    "darwin": {
+      "signature": "",
+      "url": ""
+    },
+    "darwin-aarch64": {
+      "signature": "",
+      "url": ""
+    },
+    "darwin-x86_64": {
+      "signature": "",
+      "url": ""
+    },
+    "linux-x86_64": {
+      "signature": "",
+      "url": ""
+    },
+    "windows-x86_64": {
+      "signature": "the content of a sig\n",
+      "url": "https://github.com/YMC-GitHub/yowa/releases/download/v0.1.0/wall_0.1.0_x64_en-US.msi.zip"
+    }
+  }
+}
 ```
 
 ## Author
