@@ -1,0 +1,19 @@
+usage:
+<ns> [option]
+
+demo:
+yours pkgs --src package.toml --des xx/package.toml --method get
+yours pkgs --src package.toml --des xx/package.toml --method put
+yours pkgs --src package.toml --des xx/package.toml --method del
+
+method:
+delete,put,get
+
+option:
+-v,--version boolean                      info version (default:false)
+-h,--help boolean                         info help (default:false)
+                                          
+--path string                             set the tauri app location (default:target)
+--bucket-loc string                       set the output location (default:updater/{name}.json) 
+--pkg-org string                          set name prefix (default:) 
+--browser-download-url-prefix string      set url prefix (default:)
