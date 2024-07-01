@@ -11,7 +11,9 @@ inputs:
   bucket-loc:
     description: 'Destination path of saving bucket for pkg. $BUCKET_LOC or updater/{name}.json.'
     required: false
-
+  browser-download-url-prefix:
+    description: 'the url prefix to download tauri app file. $BROWSER_DOWNLOAD_URL_PREFIX or updater/{name}.json.'
+    required: false
 
 # pkgOrg
     # BucketLoc
