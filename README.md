@@ -28,16 +28,37 @@ jobs:
   build-bucket:
     runs-on: ubuntu-20.04
     steps:
-      - name: Download All Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: tauri-app # save to path
-          pattern: tauri-app* # down load artifacts match pattern name
-          merge-multiple: false #  extracted into individual named directories within the specified path
-          run-id: 9744112537
-          github-token: ${{ secrets.GITHUB_TOKEN }} # for different repo or workflow
-          repository: ymc-github/yowa
-        
+      # - name: Download All Artifacts
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     path: tauri-app # save to path
+      #     pattern: tauri-app* # down load artifacts match pattern name
+      #     merge-multiple: false #  extracted into individual named directories within the specified path
+      #     run-id: 9744112537
+      #     github-token: ${{ secrets.GITHUB_TOKEN }} # for different repo or workflow
+      #     repository: ymc-github/yowa
+
+      - name: mock tauri artifacts
+        shell: bash
+        run: |
+          mkdir -p tauri-app/{msi,nsis}
+          touch tauri-app/msi/wall_0.1.0_x64_en-US.msi.zip
+          touch tauri-app/msi/wall_0.1.0_x64_en-US.msi.zip.sig
+          echo "the content of a sig" > tauri-app/msi/wall_0.1.0_x64_en-US.msi.zip.sig
+
+
+          touch tauri-app/nsis/wall_0.1.0_x64-setup.nsis.zip
+          touch tauri-app/nsis/wall_0.1.0_x64-setup.nsis.zip.sig
+          echo "the content of b sig" > tauri-app/nsis/wall_0.1.0_x64-setup.nsis.zip.sig
+
+          touch tauri-app/msi/main_0.1.0_x64_en-US.msi.zip
+          touch tauri-app/msi/main_0.1.0_x64_en-US.msi.zip.sig
+          echo "the content of c sig" > tauri-app/msi/main_0.1.0_x64_en-US.msi.zip.sig
+
+          touch tauri-app/nsis/main_0.1.0_x64-setup.nsis.zip
+          touch tauri-app/nsis/main_0.1.0_x64-setup.nsis.zip.sig
+          echo "the content of d sig" > tauri-app/nsis/main_0.1.0_x64-setup.nsis.zip.sig
+
       - name: list tauri app artifacts
         shell: bash
         run: |
