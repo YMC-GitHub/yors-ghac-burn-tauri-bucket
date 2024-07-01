@@ -1,0 +1,20 @@
+name: 'burn tauri bucket'
+description: 'burn tauri bucket in mono repo after downloading artifacts'
+author: 'GitHub'
+inputs:
+  path:
+    description: 'Destination path of downloaded artifacts. Defaults to $GITHUB_WORKSPACE'
+    required: false
+  pkg-org:
+    description: 'Org name of your pkgs. Defaults to $PKG_ORG'
+    required: false
+  bucket-loc:
+    description: 'Destination path of saving bucket for pkg. $BUCKET_LOC or updater/{name}.json.'
+    required: false
+
+
+# pkgOrg
+    # BucketLoc
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
