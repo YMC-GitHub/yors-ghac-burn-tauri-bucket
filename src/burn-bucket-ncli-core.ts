@@ -8,7 +8,10 @@ import {
   wirteInstallJson
   // nanoPathJoin
 } from './burn-bucket-utils'
-import {BurnBucketOption} from './burn-bucket-ncli-code'
+import type {BurnBucketOption} from './burn-bucket-ncli-code'
+
+import {builtinBurnBucketOption as defaultFlag} from './burn-bucket-ncli-code'
+import {getNanoFromArgvAndDefaultFlag as getNano} from './burn-bucket-ncli-util'
 
 export interface NanoLike {
   flags: BurnBucketOption
@@ -52,4 +55,28 @@ export async function runNano(inputs: NanoLike) {
     const loc = flag.bucketLoc.replace(/{name}/gi, name)
     wirteInstallJson(loc, getStore(storeTree, name))
   })
+}
+
+export interface RunArgvData {
+  usage?: string
+  version?: string
+}
+export async function runArgv(argv: string[], data: RunArgvData = {}) {
+  // do task here.
+  let undefineds = [undefined, '']
+  let nano = getNano(argv, defaultFlag, undefineds)
+  let flag = nano.flags
+
+  // hook process-help-version
+  if (flag.help) {
+    console.log(data.usage)
+    process?.exit(0)
+  }
+  if (flag.version) {
+    console.log(data.version || '0.1.0')
+    process?.exit(0)
+  }
+
+  //...
+  return runNano(nano as unknown as any)
 }

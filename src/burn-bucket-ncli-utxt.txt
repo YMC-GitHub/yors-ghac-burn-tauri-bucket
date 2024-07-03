@@ -2,9 +2,7 @@ usage:
 <ns> [option]
 
 demo:
-yours pkgs --src package.toml --des xx/package.toml --method get
-yours pkgs --src package.toml --des xx/package.toml --method put
-yours pkgs --src package.toml --des xx/package.toml --method del
+burn-bucket --path target --bucket-loc bucket/{name}.json --browser-download-url-prefix yours/url
 
 method:
 delete,put,get

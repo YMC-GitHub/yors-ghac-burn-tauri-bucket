@@ -124,7 +124,10 @@ export function swapCase(s: string) {
 // ouhv with flag
 export function getFlagFromProcessEnv(keys: string[]) {
   let stdkeys = keys.map(v => underscoped(v).toUpperCase()) // eg. a-b -> A_B
-  return nanoFlagShimKeysPassed(stdkeys, process.env)
+  if (process?.env) {
+    return nanoFlagShimKeysPassed(stdkeys, process.env)
+  }
+  return {}
 }
 
 /**
@@ -711,4 +714,55 @@ export function nanoFlagShimValueExclude(
     }
   })
   return res
+}
+
+export function putFlag<T>(...flags: object[]) {
+  let flag: object = {}
+  for (let index = 0; index < flags.length; index++) {
+    const item = flags[index]
+    flag = {
+      ...flag,
+      ...item
+    }
+  }
+  return flag as unknown as T
+}
+
+/**
+ *
+ * @sample
+ * ```
+ * getNanoFromArgvAndDefaultFlag(argv,builtinBurnBucketOption,[undefined, ''])
+ * ```
+ */
+export function getNanoFromArgvAndDefaultFlag(
+  argv: string[],
+  defaulFlag: object,
+  undefinedValue = [undefined, '']
+) {
+  // let undefinedValue = [undefined, '']
+  // let defaulFlag = {}
+  let flagKeys = Object.keys(defaulFlag)
+  let defFlag = {...defaulFlag}
+  let envflag = nanoFlagKeysCamelize(getFlagFromProcessEnv(flagKeys))
+  // cli or api flag
+  let cliNano = getNanoFromStra(argv)
+  let cliFlag = nanoFlagKeysCamelize(cliNano.flags)
+  // todo: get flag in position
+  // ...
+  // do you real need position flag ?
+
+  //cli flag-> process.env flag -> default-flag  ->
+  // let flag = {
+  //   ...defFlag,
+  //   ...nanoFlagShimValueExclude(envflag, undefinedvalue),
+  //   ...nanoFlagShimValueExclude(cliFlag, undefinedvalue)
+  // }
+  let flag = putFlag<NanoFlags | NanoParsedFlags>(
+    defFlag,
+    nanoFlagShimValueExclude(envflag, undefinedValue),
+    nanoFlagShimValueExclude(cliFlag, undefinedValue)
+  )
+  cliNano.flags = flag
+  return cliNano
 }
