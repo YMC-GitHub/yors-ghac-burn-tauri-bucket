@@ -4,7 +4,8 @@
   <p>
     <strong>🤖 a github action to burn tauri bucket for mono repo.</strong>
   </p>
-    [![NPM Version](https://img.shields.io/npm/v/yors-ghac-burn-tauri-bucket)](https://www.npmjs.com/package/yors-ghac-burn-tauri-bucket)
+
+  [![NPM Version](https://img.shields.io/npm/v/yors-ghac-burn-tauri-bucket)](https://www.npmjs.com/package/yors-ghac-burn-tauri-bucket)![NPM License](https://img.shields.io/npm/l/yors-ghac-burn-tauri-bucket)
 </div>
 
 ## Demo
@@ -150,4 +151,4 @@ yemiancheng <ymc.github@gmail.com>
 MIT
 
 ## Todo
-- set this repo to mono repo with pnpm workspace or npm/yarn workspace
+- set this repo to mono repo with pnpm workspace or npm/yarn
