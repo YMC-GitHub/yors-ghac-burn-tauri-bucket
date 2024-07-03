@@ -1,0 +1,56 @@
+name: publish-npm
+
+on:
+  workflow_dispatch: # let it able to dispatch manually
+  pull_request: # let it able to dispatch when pull_request on main
+  push:
+    # branches:
+      # - main # let it able to dispatch when push on main
+    tags:
+      - "*[0-9]+.[0-9]+.[0-9]+*" # let this workflow run when tag push and tag like M.m.p
+    paths-ignore:
+      - "**/*.md"
+      - LICENSE
+      - "**/*.gitignore"
+      - .editorconfig
+      - docs/**
+
+permissions: write-all
+
+jobs:
+  # code(core): define job publish-npm
+  publish-npm:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    # code(core): let it run when build-and-upload-release done
+    # needs: build-and-upload-release
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.x.x
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # lts/*
+          cache: "pnpm"
+
+      - name: install Npm packages
+        shell: bash
+        run: |
+          echo "no need to install in this repo in gh"
+
+      - name: Build Npm packages
+        shell: bash
+        run: |
+          echo "no need to build in this repo in gh"
+
+      - name: Publish to registry.npmjs.org
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          registry: "https://registry.npmjs.org/"
+          dry-run: false
