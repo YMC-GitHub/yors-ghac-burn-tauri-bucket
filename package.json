@@ -14,7 +14,7 @@
   "scripts": {
     "build": "tsc",
     "release": "ncc build src/burn-bucket.ts && git add -f dist/",
-    "release-ncli": "ncc build src/burn-bucket-ncli.ts -o ncli --minify",
+    "release-ncli": "ncc build src/burn-bucket-ncli.ts -o ncli",
     "check-all": "concurrently \"npm:format-check\" \"npm:lint\" \"npm:build\"",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",

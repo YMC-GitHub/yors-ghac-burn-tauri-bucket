@@ -133,6 +133,15 @@ jobs:
 }
 ```
 
+## cli 
+```bash
+npm i -g yors-ghac-burn-tauri-bucket
+# burn-bucket --help
+# burn-bucket --version
+
+burn-bucket --path test/tauri-app --bucket-loc "test/bucket/{name}.json" --browser-download-url-prefix "https://github.com/ymc-github/yowa/releases/download/v{version}"
+```
+
 ## Author
 
 yemiancheng <ymc.github@gmail.com>

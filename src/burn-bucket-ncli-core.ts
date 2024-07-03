@@ -67,6 +67,7 @@ export async function runArgv(argv: string[], data: RunArgvData = {}) {
   let nano = getNano(argv, defaultFlag, undefineds)
   let flag = nano.flags
 
+  // console.log(`[zero] nano:`, JSON.stringify(nano))
   // hook process-help-version
   if (flag.help) {
     console.log(data.usage)

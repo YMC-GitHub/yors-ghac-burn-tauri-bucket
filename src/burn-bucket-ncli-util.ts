@@ -124,6 +124,7 @@ export function swapCase(s: string) {
 // ouhv with flag
 export function getFlagFromProcessEnv(keys: string[]) {
   let stdkeys = keys.map(v => underscoped(v).toUpperCase()) // eg. a-b -> A_B
+  // console.log(stdkeys)
   if (process?.env) {
     return nanoFlagShimKeysPassed(stdkeys, process.env)
   }
@@ -664,6 +665,7 @@ export function NomalizeQuotationText(
 export interface KcOption {
   noAutoCamelize: boolean
   slim: boolean
+  camelize?: (...args: any[]) => string
 }
 export type KcOptionLike = Partial<KcOption>
 // export type NanoParsedValue = boolean | number | undefined | null | string;
@@ -679,9 +681,9 @@ export function nanoFlagKeysCamelize(
     ...opts
   }
   if (option.noAutoCamelize) return data
-
+  let fn = opts.camelize ? opts.camelize : camelize
   Object.keys(data).forEach(k => {
-    const ck = camelize(k)
+    const ck = fn(k)
     // res[ck]=flags[k]
     if (ck !== k) {
       data[ck] = data[k]
@@ -744,7 +746,11 @@ export function getNanoFromArgvAndDefaultFlag(
   // let defaulFlag = {}
   let flagKeys = Object.keys(defaulFlag)
   let defFlag = {...defaulFlag}
-  let envflag = nanoFlagKeysCamelize(getFlagFromProcessEnv(flagKeys))
+  // underscode -> lowercase -> camel
+  // let ulc = (v:string) => camelize(v.toLowerCase());
+  let envflag = nanoFlagKeysCamelize(getFlagFromProcessEnv(flagKeys), {
+    camelize: v => camelize(v.toLowerCase())
+  })
   // cli or api flag
   let cliNano = getNanoFromStra(argv)
   let cliFlag = nanoFlagKeysCamelize(cliNano.flags)
