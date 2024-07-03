@@ -41,7 +41,8 @@ jobs:
       - name: install Npm packages
         shell: bash
         run: |
-          echo "no need to install in this repo in gh"
+          # echo "no need to install in this repo in gh"
+          pnpm install
 
       - name: Build Npm packages
         shell: bash
