@@ -1,14 +1,13 @@
-# yors-ghac-burn-tauri-bucket
 
 <div align="center">
   <h1>burn-tauri-bucket</h1>
   <p>
     <strong>🤖 a github action to burn tauri bucket for mono repo.</strong>
   </p>
+    [![NPM Version](https://img.shields.io/npm/v/yors-ghac-burn-tauri-bucket)](https://www.npmjs.com/package/yors-ghac-burn-tauri-bucket)
 </div>
 
-
-## Demo (todo)
+## Demo
 - with this workdow:
 ```yml
 name: download-tauri-app-from-run-id
@@ -149,3 +148,6 @@ yemiancheng <ymc.github@gmail.com>
 
 ## License
 MIT
+
+## Todo
+- set this repo to mono repo with pnpm workspace or npm/yarn workspace
