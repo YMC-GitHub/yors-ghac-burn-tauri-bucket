@@ -13,8 +13,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "release": "ncc build src/burn-bucket.ts && git add -f dist/",
-    "release-ncli": "ncc build src/burn-bucket-ncli.ts -o ncli",
+    "release": "ncc build src/burn-bucket.ts --minify && git add -f dist/",
+    "release-ncli": "ncc build src/burn-bucket-ncli.ts -o ncli --minify",
     "check-all": "concurrently \"npm:format-check\" \"npm:lint\" \"npm:build\"",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
