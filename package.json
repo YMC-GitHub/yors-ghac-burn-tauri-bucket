@@ -48,5 +48,6 @@
   },
   "bin": {
     "burn-bucket": "ncli/index.js"
-  }
+  },
+  "files": ["dist","ncli","action.yaml"]
 }
