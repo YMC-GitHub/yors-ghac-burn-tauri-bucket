@@ -1,6 +1,6 @@
 {
   "name": "yors-ghac-burn-tauri-bucket",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a github action to burn tauri bucket mono repo",
   "keywords": [
     "artist",
@@ -52,6 +52,6 @@
   "files": [
     "dist",
     "ncli",
-    "action.yaml"
+    "action.yml"
   ]
 }
